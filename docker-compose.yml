@@ -1,0 +1,26 @@
+version: '3.0'
+
+volumes:
+  data-mysql:
+
+services:
+  server:
+    image: node-app
+    volumes:
+      - .:/Users/imdongsu/node-docker
+    ports:
+      - 3000:3000
+    
+  db:
+    image: mysql
+    restart: always
+    volumes:
+      - data-mysql:/var/lib/mysql
+    environment:
+      MYSQL_DATABASE: test
+      MYSQL_USER : root
+      MYSQL_PASSWORD : password
+      MYSQL_ROOT_HOST: '%'
+    ports:
+      - 3306:3306    
+
